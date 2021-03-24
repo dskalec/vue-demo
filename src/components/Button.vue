@@ -1,13 +1,13 @@
 <template>
   <div>
-    <button>{{ text }}</button>
+    <button :disabled="disabled">{{ text }}</button>
   </div>
 </template>
 
 <script>
   export default {
     name: 'Button',
-    props: ['text']  // define props as an array
+    props: ['text', 'disabled']  // define props as an array
   }
 </script>
 
@@ -28,4 +28,12 @@
     text-decoration:none;
     text-shadow:0px 1px 0px #2f6627;
   }
+  button[disabled]{
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+    cursor: auto;
+  }
+
+
 </style>

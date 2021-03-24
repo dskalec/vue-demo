@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <Header title="Piterija" />
-    <People :people="people" />
-    <Food :food="food" />
-    <Button text="Naruči"/>
+    <People @person-selected="onPersonSelect" :people="people" />
+    <Food @food-selected="onFoodSelect" :food="food" />
+    <Button text="Naruči" :disabled="orderButtonDisabled" :person="this.selectedPerson" :food="this.selectedFood"/>
     <Orders />
   </div>
 </template>
@@ -27,12 +27,32 @@ export default {
   data () {
     return {
       people: [],
-      food: []
+      food: [],
+      selectedPerson: null,
+      selectedFood: [],
+    }
+  },
+  computed: {
+    orderButtonDisabled() {
+      return !(this.selectedFood.length && this.selectedPerson)
     }
   },
   created() {
     this.people = ['Damjan', 'Davor', 'Dule', 'Ivan', 'Jerko', 'Lovre', 'Nikola', 'Vatro', 'Zvone']
     this.food = ['Jabuka', 'Meso', 'Piletina', 'Sirnica', 'Višnja']
+  },
+  methods: {
+    onPersonSelect(personIndex) {
+      this.selectedPerson = this.people[personIndex]
+      console.log(this.selectedPerson)
+    },
+    onFoodSelect(foodIndexes) {
+      if (foodIndexes) {
+        this.selectedFood = foodIndexes.map(index => this.food[index])
+        console.log(this.selectedFood)
+      }
+
+    }
   }
 }
 </script>

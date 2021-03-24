@@ -7,7 +7,7 @@
       :searchable="true"
       mode="tags"
       placeholder="Odaberi pitu..."
-      :select="onSelect(selectedFood)"
+      :select="onSelect()"
     />
   </div>
 </template>
@@ -29,8 +29,8 @@
       }
     },
     methods: {
-      onSelect(value) {
-        console.log(value)
+      onSelect() {
+        this.$emit('food-selected', this.selectedFood)
       }
     }
   }

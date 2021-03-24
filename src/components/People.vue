@@ -6,7 +6,7 @@
       :options="people"
       placeholder="Tko naručuje?"
       :searchable="true"
-      @select="onSelect(selectedPerson)"
+      @select="onSelect()"
     />
   </div>
 </template>
@@ -28,8 +28,8 @@
       }
     },
     methods: {
-      onSelect(value) {
-        console.log(value)
+      onSelect() {
+        this.$emit('person-selected', this.selectedPerson)
       }
     }
   }
