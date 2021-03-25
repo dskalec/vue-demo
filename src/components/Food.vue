@@ -8,6 +8,7 @@
       mode="tags"
       placeholder="Odaberi pitu..."
       :select="onSelect()"
+      ref="multiselect"
     />
   </div>
 </template>
@@ -31,6 +32,9 @@
     methods: {
       onSelect() {
         this.$emit('food-selected', this.selectedFood)
+      },
+      resetSelection() {
+        this.$refs.multiselect.clear()
       }
     }
   }

@@ -1,13 +1,25 @@
 <template>
   <div>
-    <button :disabled="disabled">{{ text }}</button>
+    <button type="button" :disabled="disabled" @click="onClick()">{{ text }}</button>
   </div>
 </template>
 
 <script>
   export default {
     name: 'Button',
-    props: ['text', 'disabled']  // define props as an array
+    props: {
+      text: String,
+      disabled: Boolean,
+      person: String,
+      food: Array
+    },
+    methods: {
+      onClick() {
+        if (confirm(`${this.person}, želiš li sigurno naručiti ${this.food}?`)) {
+          this.$emit('order-placed', this.person, this.food)
+        }
+      },
+    }
   }
 </script>
 

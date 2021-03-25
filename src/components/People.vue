@@ -6,7 +6,9 @@
       :options="people"
       placeholder="Tko naručuje?"
       :searchable="true"
-      @select="onSelect()"
+      @select="onSelect(this.selectedPerson)"
+      @deselect="onSelect(null)"
+      ref="multiselect"
     />
   </div>
 </template>
@@ -28,8 +30,11 @@
       }
     },
     methods: {
-      onSelect() {
-        this.$emit('person-selected', this.selectedPerson)
+      onSelect(selectedPersonIndex) {
+        this.$emit('person-selected', selectedPersonIndex)
+      },
+      resetSelection() {
+        this.$refs.multiselect.clear()
       }
     }
   }
