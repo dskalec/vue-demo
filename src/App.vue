@@ -74,7 +74,9 @@ export default {
      this.resetSelection()
     },
     deleteOrder(orderId) {
-      this.orders = this.orders.filter((order) => order.id !== orderId)
+      if (confirm('Sigurno želiš obrisati narudžbu?')) {
+        this.orders = this.orders.filter((order) => order.id !== orderId)
+      }
     },
     reset() {
       this.resetSelection()

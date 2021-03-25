@@ -39,7 +39,7 @@
 }
 .order-time {
   float: right;
-  font-size: 18px;
+  font-size: 15px;
   color: #2f6627;
 }
 .fas {
