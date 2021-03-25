@@ -1,6 +1,6 @@
 <template>
   <div v-for="order in orders" :key="order.id">
-    <Order :order="order" />
+    <Order @delete-order="$emit('delete-task', order.id)" :order="order" />
   </div>
 </template>
 
@@ -14,7 +14,8 @@
     },
     props: {
       orders: Array
-    }
+    },
+    emits: ['delete-task']
   }
 </script>
 

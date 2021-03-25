@@ -4,6 +4,11 @@
     <template v-for="food in order.food" :key="food">
       <span class="order-food">{{ food }}</span>
     </template>
+    <p class="order-time">
+      Vrijeme narudžbe: {{order.orderTime}}
+      <i class="fas fa-times" @click="deleteOrder(order.id)"></i>
+    </p>
+
   </div>
 </template>
 
@@ -12,6 +17,11 @@
     name: 'Order',
     props: {
       order: Object
+    },
+    methods: {
+      deleteOrder(orderId) {
+        this.$emit('delete-order', orderId);
+      }
     }
   }
 </script>
@@ -25,6 +35,15 @@
 }
 .order-food {
   margin-right: 10px;
+  padding: 5px 5px;
+}
+.order-time {
+  float: right;
+  font-size: 18px;
+  color: #2f6627;
+}
+.fas {
+  color: red;
   padding: 5px 5px;
 }
 </style>

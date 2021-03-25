@@ -10,7 +10,7 @@
         :food="this.selectedFood"
         @order-placed="onOrderPlacement"
     />
-    <Orders :orders="orders"/>
+    <Orders @delete-task="deleteOrder" :orders="orders"/>
   </div>
 </template>
 
@@ -68,9 +68,12 @@ export default {
         id: uuidv4(),
         name: person,
         food: food,
-        orderTime: new Date().toLocaleString()
+        orderTime: new Date().toLocaleString('hr-HR')
       })
      this.resetValues()
+    },
+    deleteOrder(orderId) {
+      this.orders = this.orders.filter((order) => order.id !== orderId)
     }
   }
 }
