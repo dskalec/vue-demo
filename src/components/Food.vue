@@ -1,6 +1,6 @@
 <template>
   <div id="food">
-    <h3>Pita:</h3>
+    <h3>Odabir hrane:</h3>
     <Multiselect
       v-model="selectedFood"
       v-bind:options="food"

@@ -1,6 +1,7 @@
 <template>
   <div>
     <button type="button" :disabled="disabled" @click="onClick()">{{ text }}</button>
+    <button class="reset-button" @click="$emit('global-reset')"> Obriši sve</button>
   </div>
 </template>
 
@@ -19,7 +20,8 @@
           this.$emit('order-placed', this.person, this.food)
         }
       },
-    }
+    },
+    emits: ['global-reset']
   }
 </script>
 
@@ -27,6 +29,19 @@
   div {
     text-align: center;
     margin-top: 20px;
+  }
+  .reset-button {
+    background-color:red;
+    border-radius:10px;
+    border:1px solid #18ab29;
+    display: inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-size:15px;
+    padding:5px 5px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #2f6627;
+    float: right;
   }
   button {
     background-color:#44c767;

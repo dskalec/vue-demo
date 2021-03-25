@@ -4,11 +4,12 @@
     <People @person-selected="onPersonSelect" :people="people" ref="people" />
     <Food @food-selected="onFoodSelect" :food="food" ref="food" />
     <Button
-        text="Naruči"
-        :disabled="orderButtonDisabled"
-        :person="this.selectedPerson"
-        :food="this.selectedFood"
-        @order-placed="onOrderPlacement"
+      text="Naruči"
+      :disabled="orderButtonDisabled"
+      :person="this.selectedPerson"
+      :food="this.selectedFood"
+      @order-placed="onOrderPlacement"
+      @global-reset="reset"
     />
     <Orders @delete-task="deleteOrder" :orders="orders"/>
   </div>
@@ -48,7 +49,7 @@ export default {
   },
   created() {
     this.people = ['Damjan', 'Davor', 'Dule', 'Ivan', 'Jerko', 'Lovre', 'Nikola', 'Vatro', 'Zvone']
-    this.food = ['Jabuka', 'Meso', 'Piletina', 'Sirnica', 'Višnja']
+    this.food = ['Jabuka', 'Jogurt', 'Krumpiruša', 'Meso', 'Piletina', 'Sirnica', 'Šareni', 'Višnja']
   },
   methods: {
     onPersonSelect(personIndex) {
@@ -59,7 +60,7 @@ export default {
         this.selectedFood = foodIndexes.map(index => this.food[index])
       }
     },
-    resetValues() {
+    resetSelection() {
       this.$refs.food.resetSelection()
       this.$refs.people.resetSelection()
     },
@@ -70,10 +71,16 @@ export default {
         food: food,
         orderTime: new Date().toLocaleString('hr-HR')
       })
-     this.resetValues()
+     this.resetSelection()
     },
     deleteOrder(orderId) {
       this.orders = this.orders.filter((order) => order.id !== orderId)
+    },
+    reset() {
+      this.resetSelection()
+      this.orders = []
+      this.selectedFood = []
+      this.selectedPerson = null
     }
   }
 }
